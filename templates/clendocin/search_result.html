@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索结果</title>
+</head>
+<body>
+<div>搜索结果：</div>
+{% for result in results %}
+    <div>
+    <a href="{{ result.href }}">{{ result.title }}</a>
+    </div>
+{% endfor %}
+</body>
+</html>
