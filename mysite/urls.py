@@ -21,5 +21,6 @@ urlpatterns = [
     url(r'^$', view=views.home, name='home'),
     url(r'^blog/', include('blog.urls')),
     url(r'^cleandocin/', include('cleandocin.urls')),
+    url(r'^bphelper/', include('bphelper.urls')),
     url(r'^admin/', admin.site.urls),
 ]

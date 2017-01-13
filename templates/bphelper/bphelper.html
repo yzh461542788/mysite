@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="zh-hans" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>炉石Ban选助手</title>
+    <script src="{% static "bphelper/js/bphelper.js" %}"></script>
+</head>
+<body>
+<table>
+    <caption>请输入卡组间的胜率估计（0.0～1.0）</caption>
+    <tbody>
+    <tr>
+        <td>你的卡组\对手卡组</td>
+        <td><input value="卡组1" class="b-deck"></td>
+        <td><input value="卡组2" class="b-deck"></td>
+        <td><input value="卡组3" class="b-deck"></td>
+        <td><input value="卡组4" class="b-deck"></td>
+        <td><input value="卡组5" class="b-deck optional"></td>
+    </tr>
+    <tr>
+        <td><input value="卡组1" class="a-deck"></td>
+        <td><input value="0.5" placeholder="胜率" class="rate"></td>
+        <td><input value="0.5" placeholder="胜率" class="rate"></td>
+        <td><input value="0.5" placeholder="胜率" class="rate"></td>
+        <td><input value="0.5" placeholder="胜率" class="rate"></td>
+        <td><input value="0.5" placeholder="胜率" class="rate optional"></td>
+    </tr>
+    <tr>
+        <td><input value="卡组2" class="a-deck"></td>
+        <td><input value="0.5" placeholder="胜率" class="rate"></td>
+        <td><input value="0.5" placeholder="胜率" class="rate"></td>
+        <td><input value="0.5" placeholder="胜率" class="rate"></td>
+        <td><input value="0.5" placeholder="胜率" class="rate"></td>
+        <td><input value="0.5" placeholder="胜率" class="rate optional"></td>
+    </tr>
+    <tr>
+        <td><input value="卡组3" class="a-deck"></td>
+        <td><input value="0.5" placeholder="胜率" class="rate"></td>
+        <td><input value="0.5" placeholder="胜率" class="rate"></td>
+        <td><input value="0.5" placeholder="胜率" class="rate"></td>
+        <td><input value="0.5" placeholder="胜率" class="rate"></td>
+        <td><input value="0.5" placeholder="胜率" class="rate optional"></td>
+    </tr>
+    <tr>
+        <td><input value="卡组4" class="a-deck"></td>
+        <td><input value="0.5" placeholder="胜率" class="rate"></td>
+        <td><input value="0.5" placeholder="胜率" class="rate"></td>
+        <td><input value="0.5" placeholder="胜率" class="rate"></td>
+        <td><input value="0.5" placeholder="胜率" class="rate"></td>
+        <td><input value="0.5" placeholder="胜率" class="rate optional"></td>
+    </tr>
+    <tr class="optional">
+        <td><input value="卡组5" class="a-deck"></td>
+        <td><input value="0.5" placeholder="胜率" class="rate"></td>
+        <td><input value="0.5" placeholder="胜率" class="rate"></td>
+        <td><input value="0.5" placeholder="胜率" class="rate"></td>
+        <td><input value="0.5" placeholder="胜率" class="rate"></td>
+        <td><input value="0.5" placeholder="胜率" class="rate optional"></td>
+    </tr>
+    </tbody>
+</table>
+<label>
+    <input name="type" id="4ban1" type="radio" value="4ban1" onclick="checkState()">4BAN1
+    <input name="type" id="5ban1" type="radio" value="5ban1" checked onclick="checkState()">5BAN1
+    <br>
+    模拟次数:（次数越多越准确，太大可能造成卡顿）<input id="iterations" value="10000" type="text">
+</label>
+<button onclick="calculate()">计算</button>
+<div id="message"></div>
+</body>
+</html>
