@@ -11,7 +11,7 @@ def home(request):
 
 def post(request, blog_id):
     blog = get_object_or_404(Blog, id=blog_id)
-    return render(request, "")
+    return render(request, "blog/blog.html", context={"blog": blog})
 
 
 def category(request):
