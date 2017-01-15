@@ -1,15 +1,47 @@
+import markdown2
+from django.core.urlresolvers import reverse
 from django.db import models
+from taggit.managers import TaggableManager
 
 
-class Article(models.Model):
-    title = models.CharField(max_length=100)  # 博客题目
-    category = models.CharField(max_length=50, blank=True)  # 博客标签
-    date_time = models.DateTimeField(auto_now_add=True)  # 博客日期
-    content = models.TextField(blank=True, null=True)  # 博客文章正文
+class Category(models.Model):
+    title = models.CharField(max_length=100, unique=True)
+    slug = models.SlugField(max_length=50, unique=True)
 
-    # python2使用__unicode__, python3使用__str__
     def __str__(self):
         return self.title
 
-    class Meta:  # 按时间下降排序
-        ordering = ['-date_time']
+    def get_absolute_url(self):
+        return reverse('blog.views.category', kwargs={'category': self.slug})
+
+
+class Blog(models.Model):
+    class Meta:
+        ordering = ['-pub_date']
+
+    title = models.CharField(max_length=150)
+    md_content = models.TextField(blank=True)
+    html_content = models.TextField(blank=True)
+    pub_date = models.DateTimeField('date published', auto_now_add=True)
+    last_edit_date = models.DateTimeField('last edited', auto_now=True)
+    category = models.ForeignKey(Category)
+    description = models.TextField(blank=True)
+    tags = TaggableManager()
+
+    def __str__(self):
+        return self.title
+
+    def save(self, *args, **kwargs):
+        self.html_content = markdown2.markdown(self.md_content, extras=["fenced-code-blocks", "tables"])
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('blog.views.article', kwargs={'blog_id': self.id})
+
+
+class Image(models.Model):
+    def get_path(self, filename):
+        return 'content/images/{article}/{filename}'.format(article=self.article.id, filename=filename)
+
+    article = models.ForeignKey(Blog, related_name='images')
+    image = models.ImageField(upload_to=get_path)
