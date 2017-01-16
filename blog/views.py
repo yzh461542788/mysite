@@ -1,9 +1,7 @@
-import taggit
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-from taggit.managers import TaggableManager
 
 from blog.models import Blog, Category
 
@@ -11,12 +9,12 @@ from blog.models import Blog, Category
 # Create your views here.
 
 def home(request):
-    return HttpResponse("Too young, too simple. Sometimes naive.")
+    return render(request, 'blog/home.html')
 
 
 def post(request, blog_id):
     blog = get_object_or_404(Blog, id=blog_id)
-    return render(request, "blog/blog_post.html", context={"blog": blog})
+    return render(request, 'blog/blog_post.html', context={"blog": blog})
 
 
 def category(request):

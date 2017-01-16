@@ -25,6 +25,9 @@
                                 {{ blog.pub_date|date:"dS"|upper }},
                                 {{ blog.pub_date.year }}
                             </bd>
+                            <span class="col-lg-offset-1">
+                                <a href="/blog/category/{{ blog.category.slug }}">{{ blog.category.title }}</a>
+                            </span>
                         </p>
                         <hr>
                         {% autoescape off %}{{ blog.brief_content }}{% endautoescape %}
@@ -37,7 +40,7 @@
                             </bt>
                         </p>
                         <p>
-                        <a href="/blog/article/{{ blog.id }}">READ MORE</a>
+                            <a href="/blog/article/{{ blog.id }}">READ MORE</a>
                         </p>
                         <hr>
                     {% endfor %}

@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block head %}
+    <title xmlns="http://www.w3.org/1999/html">Stay Naive</title>
+    <meta name="description" content="Stay Naive. A naive personal website.">
+{% endblock head %}
+
+{% block container %}
+    <div id="ww">
+	    <div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2 centered">
+					<img src="{% static "blog/img/favicon.png" %}" alt="avatar" width="200" height="200">
+					<h1>Too young, too simple</h1>
+                    <h1>Sometimes naive</h1>
+				</div><!-- /col-lg-8 -->
+			</div><!-- /row -->
+	    </div> <!-- /container -->
+	</div><!-- /ww -->
+{% endblock container %}

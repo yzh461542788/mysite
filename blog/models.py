@@ -26,7 +26,6 @@ class Blog(models.Model):
     pub_date = models.DateTimeField('date published', auto_now_add=True)
     last_edit_date = models.DateTimeField('last edited', auto_now=True)
     category = models.ForeignKey(Category)
-    description = models.TextField(blank=True)
     tags = TaggableManager()
 
     def __str__(self):
