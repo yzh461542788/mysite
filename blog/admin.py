@@ -16,7 +16,7 @@ class ImageInline(admin.TabularInline):
 class BlogAdminForm(forms.ModelForm):
     class Meta:
         model = Blog
-        exclude = ('html_content',)
+        exclude = ('html_content', 'brief_content')
 
 
 class BlogAdmin(admin.ModelAdmin):

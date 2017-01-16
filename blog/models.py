@@ -22,6 +22,7 @@ class Blog(models.Model):
     title = models.CharField(max_length=150)
     md_content = models.TextField(blank=True)
     html_content = models.TextField(blank=True)
+    brief_content = models.TextField(blank=True)
     pub_date = models.DateTimeField('date published', auto_now_add=True)
     last_edit_date = models.DateTimeField('last edited', auto_now=True)
     category = models.ForeignKey(Category)
@@ -33,6 +34,7 @@ class Blog(models.Model):
 
     def save(self, *args, **kwargs):
         self.html_content = markdown2.markdown(self.md_content, extras=["fenced-code-blocks", "tables"])
+        self.brief_content = self.html_content[:self.html_content.find(r'<!--more-->')]
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):

@@ -11,9 +11,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
-{#                    <p><img src="{% static "blog/img/user.png" %}" width="50px" height="50px">#}
-{#                        <ba>Stanley Stinson</ba>#}
-{#                    </p>#}
+                    {#                    <p><img src="{% static "blog/img/user.png" %}" width="50px" height="50px">#}
+                    {#                        <ba>Stanley Stinson</ba>#}
+                    {#                    </p>#}
                     <h1 class="title">{{ blog.title }}</h1>
                     <p>
                         <bd>
@@ -21,15 +21,22 @@
                             {{ blog.pub_date|date:"dS"|upper }},
                             {{ blog.pub_date.year }}
                         </bd>
+                        <span class="col-lg-offset-1">
+                            <a href="/blog/category/{{ blog.category.slug }}">{{ blog.category.title }}</a>
+                        </span>
                     </p>
                     <hr>
                     {% autoescape off %}{{ blog.html_content }}{% endautoescape %}
                     <br>
                     <p>
-                        <bt>TAGS: <a href="#">Wordpress</a> - <a href="#">Web Design</a></bt>
+                        <bt>TAGS:
+                            {% for tag in blog.tags.all %}
+                                <a href="/blog/tag/{{ tag.slug }}">{{ tag.name }}</a>
+                            {% endfor %}
+                        </bt>
                     </p>
                     <hr>
-                    <p><a href="old_blog.html"># Back</a></p>
+                    <p><a href="/blog/"># Back</a></p>
                 </div>
 
             </div><!-- /row -->
