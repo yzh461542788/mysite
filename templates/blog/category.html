@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block head %}
+    <title>Category - Stay Naive</title>
+    <meta name="description" content="blog category">
+{% endblock head %}
+
+{% block container %}
+    <div class="container">
+        <div class="row mt">
+            {% for cate in category %}
+                <div class="col-lg-6 col-lg-offset-3 centered">
+                    <h1><a class="title" href="/blog/category/{{ cate.slug }}">{{ cate.title }}</a></h1>
+                    <hr>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock container %}
