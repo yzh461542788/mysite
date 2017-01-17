@@ -244,3 +244,20 @@ bt {
 	font-size: 40px;
 	color: #1abc9c;
 }
+
+/* BP helper table */
+#bp-table td {
+	width: 16.666667%;
+}
+
+#bp-table input {
+	width: 100%;
+}
+
+#bp-table-result {
+	width: 100%;
+}
+
+#bp-table-result td {
+	width: 14.2857%;
+}
