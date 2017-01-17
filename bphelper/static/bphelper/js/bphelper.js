@@ -7,7 +7,7 @@ function calculate() {
     let rates = Array.from(document.getElementsByClassName('rate')).map(x => x.value);
     let iteration = document.getElementById("iterations").value;
     if (!isNumeric(iteration) || iteration <= 0) {
-        msg.innerHTML = "请输入正确的模拟次数";
+        msg.innerHTML = "<p><strong>请输入正确的模拟次数</strong></p>";
         return;
     }
     let deck = [
@@ -59,7 +59,8 @@ function calculate() {
         }
     }
 
-    let message = "<table><caption>BAN选后总体胜率估计:</caption><thead><tr><th>你被BAN的卡组\\对手被BAN的卡组</th>";
+    let message = "<table id='bp-table-result' class='centered'><p><caption>BAN选后总体胜率估计:" +
+        "</caption></p><thead><tr><th>BAN你\\对手</th>";
     for (let i = 0; i < rates.length; i++) {
         message += "<th>" + deck[1][i] + "</th>";
     }

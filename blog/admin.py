@@ -5,7 +5,7 @@ from django import forms
 from django.contrib import admin
 from django.forms import TextInput, Textarea
 
-from blog.models import Blog, Image, Category
+from blog.models import Blog, Image, Category, Project
 
 
 class ImageInline(admin.TabularInline):
@@ -26,3 +26,4 @@ class BlogAdmin(admin.ModelAdmin):
 
 admin.site.register(Blog, BlogAdmin)
 admin.site.register(Category, admin.ModelAdmin)
+admin.site.register(Project, admin.ModelAdmin)

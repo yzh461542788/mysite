@@ -5,12 +5,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
     <meta name="author" content="Zihao">
     <link rel="icon" type="image/x-icon" href="{% static "blog/img/favicon.png" %}">
 
     {% block head %}
-        head information such as title and meta
+        <!--head information such as title and meta-->
     {% endblock %}
     <!-- Bootstrap core CSS -->
 
@@ -46,10 +45,10 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/blog">Blog</a></li>
                 <li><a href="/blog/category/">Category</a></li>
-                <li><a href="/">Projects</a></li>
-                <li><a href="/">Contact</a></li>
+                <li><a href="/blog/projects/">Projects</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -57,7 +56,7 @@
 
 <!-- +++++ Container Section +++++ -->
 {% block container %}
-    Must be rewrite
+    <!--Must be rewrite-->
 {% endblock container %}
 <!-- +++++ Footer Section +++++ -->
 
@@ -65,10 +64,10 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-4">
-                <h4>placeholder</h4>
+                <h4>SOURCE</h4>
                 <p>
-                    Not ready yet<br/>
-                    But it looks ugly if removed <br/>
+                    Checkout everything <br/>about this site at<br/>
+                    <a href="https://github.com/yzh461542788/mysite">HERE</a><br/>
                 </p>
             </div><!-- /col-lg-4 -->
 
@@ -97,5 +96,8 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="{% static "blog/js/bootstrap.min.js" %}"></script>
+{% block end %}
+    <!--a place to put scripts-->
+{% endblock %}
 </body>
 </html>

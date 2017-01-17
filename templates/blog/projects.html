@@ -2,16 +2,17 @@
 {% load static %}
 
 {% block head %}
-    <title>Category - Stay Naive</title>
-    <meta name="description" content="blog category">
+    <title>Projects - Stay Naive</title>
+    <meta name="description" content="my projects list">
 {% endblock head %}
 
 {% block container %}
     <div class="container">
         <div class="row mt">
-            {% for cate in category %}
+            {% for project in projects %}
                 <div class="col-lg-6 col-lg-offset-3 centered">
-                    <h1><a class="title" href="/blog/category/{{ cate.slug }}">{{ cate.title }}</a></h1>
+                    <h1><a href="{{ project.url }}">{{ project.title }}</a></h1>
+                    <p>{% autoescape off %} {{ project.description }} {% endautoescape %}</p>
                     <hr>
                 </div>
             {% endfor %}

@@ -3,7 +3,7 @@ from django.http import Http404
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 
-from blog.models import Blog, Category
+from blog.models import Blog, Category, Project
 
 
 # Create your views here.
@@ -38,3 +38,8 @@ def blog_list(request, cate_slug=None, tag_slug=None):
         except ObjectDoesNotExist:
             raise Http404('No such tag')
     return render(request, 'blog/blog_list.html', context={'blogs': blogs, 'title': title})
+
+
+def projects(request):
+    project_list = Project.objects.all()
+    return render(request, 'blog/projects.html', context={'projects': project_list})
