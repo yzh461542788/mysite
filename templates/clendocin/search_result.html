@@ -1,15 +1,30 @@
-<!DOCTYPE html>
-<html lang="zh-hans">
-<head>
-    <meta charset="UTF-8">
-    <title>搜索结果</title>
-</head>
-<body>
-<div>搜索结果：</div>
-{% for result in results %}
-    <div>
-    <a href="{{ result.href }}">{{ result.title }}</a>
+{% extends 'base.html' %}
+{% block head %}
+    <title>Search Result - Stay Naive</title>
+    <meta name="description" content="search result of documents">
+{% endblock head %}
+{% block container %}
+    <div class="row mt">
+        <h2 class="col-lg-offset-3">Results:</h2>
+        <div class="col-lg-6 col-lg-offset-3 centered">
+            {% for result in results %}
+                <p>
+                    <a href="{{ result.href }}">{{ result.title }}</a>
+                </p>
+                <hr>
+            {% endfor %}
+        </div>
     </div>
-{% endfor %}
-</body>
-</html>
+
+    <div class="row mt">
+        <div class="col-lg-4 col-lg-offset-4">
+            <form role="form" action="/cleandocin/search/">
+                <div class="form-group">
+                    <input type="text" name="key" class="form-control centered" id="key" placeholder="Search documents">
+                    <br>
+                    <button type="submit" class="btn btn-success col-lg-offset-5 col-lg-2">GO</button>
+                </div>
+            </form>
+        </div>
+    </div><!-- /row -->
+{% endblock container %}

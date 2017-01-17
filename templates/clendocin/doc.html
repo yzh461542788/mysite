@@ -1,3 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+    <title>{{ doc.title }} - Stay Naive</title>
+    <meta name="description" content="search result of documents">
+{% endblock head %}
+{% block container %}
+    <div class="row mt">
+        <div class="col-lg-6 col-lg-offset-3 centered">
+            <h1>{{ doc.title }}</h1>
+            <hr>
+        </div>
+    </div>
+    <div class="row mt col-lg-offset-2 centered">
+        {% for i in pages %}
+            <div id="page_{{ i }}">
+                <div class="panel_inner scrollLoading"
+                     style="width: 80%; height: 1120px; background-position: center center;">
+                    <object type="application/x-shockwave-flash"
+                            data="{% static "cleandocin/PageViewer.swf" %}" width="100%" height="100%"
+                            id="flash_{{ i }}" style="visibility: visible;">
+                        <param name="wmode" value="transparent">
+                        <param name="allowscriptaccess" value="always">
+                        <param name="hasPriority" value="true">
+                        <param name="flashvars"
+                               value="productId={{ doc_id }}&amp;pagenum={{ i }}">
+                    </object>
+                </div>
+            </div>
+        {% endfor %}
+    </div><!-- /row -->
+{% endblock container %}
+
 <!DOCTYPE html>
 {% load static %}
 <html lang="zh-hans">
@@ -7,22 +40,7 @@
 
 </head>
 <body>
-{% for i in pages %}
-    <div id="page_{{ i }}" class="model panel" style="background-position: center center">
-        <div class="panel_inner scrollLoading"
-             style="width: 792px; height: 1120px; background-position: center center;">
-            <object type="application/x-shockwave-flash"
-                    data="{% static "cleandocin/PageViewer.swf" %}" width="100%" height="100%"
-                    id="flash_{{ i }}" style="visibility: visible;">
-                <param name="wmode" value="transparent">
-                <param name="allowscriptaccess" value="always">
-                <param name="hasPriority" value="true">
-                <param name="flashvars"
-                       value="productId={{ doc_id }}&amp;pagenum={{ i }}">
-            </object>
-        </div>
-    </div>
-{% endfor %}
+
 
 </body>
 </html>
