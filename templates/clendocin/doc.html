@@ -2,7 +2,7 @@
 {% load static %}
 {% block head %}
     <title>{{ doc.title }} - Stay Naive</title>
-    <meta name="description" content="search result of documents">
+    <meta name="description" content="{{ doc.title }} document reading">
 {% endblock head %}
 {% block container %}
     <div class="row mt">
@@ -13,24 +13,59 @@
     </div>
     <div class="row mt col-lg-offset-2 centered">
         {% for i in pages %}
-            <div id="page_{{ i }}">
-                <div class="panel_inner scrollLoading"
+            <div id="page_{{ i }}" class="page" style="height: 1120px">
+            <p>Loading...</p>
+            </div>
+        {% endfor %}
+
+    </div><!-- /row -->
+{% endblock container %}
+
+{% block end %}
+    <script src="{% static "cleandocin/js/lib/jquery.waypoints.min.js" %}"></script>
+    <script>
+        var page_0 = document.getElementById('page_0');
+        page_0.innerHTML = `<div class="panel_inner scrollLoading"
                      style="width: 80%; height: 1120px; background-position: center center;">
                     <object type="application/x-shockwave-flash"
                             data="{% static "cleandocin/PageViewer.swf" %}" width="100%" height="100%"
-                            id="flash_{{ i }}" style="visibility: visible;">
+                            id="flash_0" style="visibility: visible;">
                         <param name="wmode" value="transparent">
                         <param name="allowscriptaccess" value="always">
                         <param name="hasPriority" value="true">
                         <param name="flashvars"
-                               value="productId={{ doc_id }}&amp;pagenum={{ i }}">
+                               value="productId={{ doc_id }}&amp;pagenum=0">
                     </object>
-                </div>
-            </div>
-        {% endfor %}
-    </div><!-- /row -->
-{% endblock container %}
-
+                </div>`;
+        var pages = document.getElementsByClassName('page');
+        var waypoints = [];
+        for (var i = 0; i < pages.length - 1; i++) {
+            ((x) => {
+                waypoints.push(new Waypoint({
+                    element: pages[x],
+{#                    offset: 'bottom-in-view',#}
+{#                    offset: '1120px',#}
+                    handler: function () {
+                        var flashCode =
+                                `<div class="panel_inner scrollLoading" style="width: 80%; height: 1120px; background-position: center center;">
+                                <object type="application/x-shockwave-flash"
+                                        data="{% static "cleandocin/PageViewer.swf" %}" width="100%" height="100%"
+                                        id="flash_${x+1}" style="visibility: visible;">
+                                    <param name="wmode" value="transparent">
+                                    <param name="allowscriptaccess" value="always">
+                                    <param name="hasPriority" value="true">
+                                    <param name="flashvars"
+                                           value="productId={{ doc_id }}&amp;pagenum=${x + 1}">
+                                </object>
+                                </div>`;
+                        var nextPage = pages[x + 1];
+                        nextPage.innerHTML = flashCode;
+                    }
+                }));
+            })(i);
+        }
+    </script>
+{% endblock end %}
 <!DOCTYPE html>
 {% load static %}
 <html lang="zh-hans">
