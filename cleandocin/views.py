@@ -63,9 +63,10 @@ def doc(request, doc_id):
         document.size = doc_info[11].string
         document.valid = True
         document.save()
-        for t in doc_info[23].find_all('a'):
-            document.tag.add(Tag.objects.get_or_create(name=t.text)[0])
-        document.save()
+        if len(doc_info) > 23:
+            for t in doc_info[23].find_all('a'):
+                document.tag.add(Tag.objects.get_or_create(name=t.text)[0])
+            document.save()
     return render(request, 'clendocin/doc.html',
                   context={'pages': list(range(int(document.page_num))),
                            'doc': document,
