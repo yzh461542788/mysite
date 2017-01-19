@@ -1,4 +1,0 @@
-django=1.10
-django-taggit
-Pillow
-django-contact-form

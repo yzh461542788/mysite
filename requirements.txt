@@ -1,0 +1,8 @@
+django=1.10
+django-taggit
+Pillow
+requests
+BeautifulSoup4
+markdown2
+bootstrap-admin
+mysqlclient
