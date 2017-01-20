@@ -6,5 +6,5 @@ urlpatterns = [
     url(r'^doc/(?P<doc_id>[0-9]+)/$', view=views.doc),
     url(r'^search/$', view=views.search),
     url(r'^search/', view=views.search),
-    url(r'^doc/(?P<doc_id>[0-9]+)/(?P<max_page>[0-9]+)/$', view=views.doc)
+    url(r'^download/(?P<doc_id>[0-9]+)/$', view=views.download)
 ]
