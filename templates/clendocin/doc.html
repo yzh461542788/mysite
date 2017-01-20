@@ -34,7 +34,7 @@
                         <param name="allowscriptaccess" value="always">
                         <param name="hasPriority" value="true">
                         <param name="flashvars"
-                               value="productId={{ doc_id }}&amp;pagenum=0">
+                               value="productId={{ doc.id }}&amp;pagenum=0">
                     </object>
                 </div>`;
         var pages = document.getElementsByClassName('page');
@@ -43,8 +43,6 @@
             ((x) => {
                 waypoints.push(new Waypoint({
                     element: pages[x],
-{#                    offset: 'bottom-in-view',#}
-{#                    offset: '1120px',#}
                     handler: function () {
                         var flashCode =
                                 `<div class="panel_inner scrollLoading" style="width: 80%; height: 1120px; background-position: center center;">
@@ -55,7 +53,7 @@
                                     <param name="allowscriptaccess" value="always">
                                     <param name="hasPriority" value="true">
                                     <param name="flashvars"
-                                           value="productId={{ doc_id }}&amp;pagenum=${x + 1}">
+                                           value="productId={{ doc.id }}&amp;pagenum=${x + 1}">
                                 </object>
                                 </div>`;
                         var nextPage = pages[x + 1];
@@ -66,16 +64,3 @@
         }
     </script>
 {% endblock end %}
-<!DOCTYPE html>
-{% load static %}
-<html lang="zh-hans">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-
-</head>
-<body>
-
-
-</body>
-</html>

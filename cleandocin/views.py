@@ -69,6 +69,4 @@ def doc(request, doc_id):
             document.save()
     return render(request, 'clendocin/doc.html',
                   context={'pages': list(range(int(document.page_num))),
-                           'doc': document,
-                           'doc_id': doc_id,
-                           'title': document.title})
+                           'doc': document})
