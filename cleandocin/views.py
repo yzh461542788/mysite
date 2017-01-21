@@ -25,7 +25,7 @@ def search(request):
     url = r'http://www.docin.com/search.do?searchcat=1001&nkey={key}'.format(key=key)
     response = requests.get(url)
     if not response.ok:
-        return 404
+        raise Http404
 
     results = []
     soup = BeautifulSoup(response.text, 'html.parser')

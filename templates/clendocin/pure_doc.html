@@ -48,7 +48,7 @@
                         <param name="allowscriptaccess" value="always">
                         <param name="hasPriority" value="true">
                         <param name="flashvars"
-                               value="productId=111111112&amp;pagenum=0">
+                               value="productId={{ doc.id }}&amp;pagenum=0">
                     </object>
                 </div>`;
         var pages = document.getElementsByClassName('page');
@@ -67,7 +67,7 @@
                                     <param name="allowscriptaccess" value="always">
                                     <param name="hasPriority" value="true">
                                     <param name="flashvars"
-                                           value="productId=111111112&amp;pagenum=${x + 1}">
+                                           value="productId={{ doc.id }}&amp;pagenum=${x + 1}">
                                 </object>
                                 </div>`;
                         var nextPage = pages[x + 1];
